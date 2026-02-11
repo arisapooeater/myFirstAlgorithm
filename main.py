@@ -1,12 +1,12 @@
 import time
-
-finalTotal = 0
 total = 0
-
+finalTotal = 0
 
 def calculateTotal():
+    global total
     Checkout = False
     foodChoices = []
+
     while Checkout == False:
         print("""
  _________________
@@ -15,30 +15,40 @@ def calculateTotal():
 | 2. Meat Pie $5  |
 | 3. Burger $6    |
  _________________""")
-        choice = input("""
-Select an item (1/2/3): """)
+        choice = int(input("""
+Select an item (1/2/3): """))
         if choice == 1:
             print(f"""
 Yoghurt added to cart!""")
-            total + 2
+            total += 2
         elif choice == 2:
             print(f"""
 Meat Pie added to cart!""")
-            total + 5
+            total += 5
         elif choice == 3:
             print(f"""
 Burger added to cart!""")
-            total + 6
-    response = input("Head to checkout? (yes/no): ")
-    if response.lowercase() == 'yes':
-        Checkout = True
+            total += 6
+        else:
+            print("""
+Invalid input. Enter a number from 1-3 (1/2/3).""")
+        response = input("Head to checkout? (yes/no): ")
+        if response.lower() == 'yes':
+            Checkout = True
+        elif response.lower() != 'yes' or response.lower() != 'no':
+            print("""
+Invalid input. Enter yes/no.""")
+        print(1.5)
             
 
 
 def applyDiscount():
+    global finalTotal
+    global total 
     if total > 10:
         finalTotal = total * 0.9
-        print("Discount for orders above $10 was applicable!")
+        print("""
+Discount for orders above $10 was applicable!""")
     else:
         finalTotal = total
     print(f"""
@@ -63,7 +73,7 @@ print(f"""
 | ----- RECEIPT ----- |
 |                     |
 | {studentName}       
-| {finalTotal}       
+| ${finalTotal}       
 |                     |
 |                     |
 |                     |
