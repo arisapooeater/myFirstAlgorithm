@@ -38,7 +38,7 @@ Invalid input. Enter a number from 1-3 (1/2/3).""")
         elif response.lower() != 'yes' or response.lower() != 'no':
             print("""
 Invalid input. Enter yes/no.""")
-        print(1.5)
+        time.sleep(1.5)
             
 
 
