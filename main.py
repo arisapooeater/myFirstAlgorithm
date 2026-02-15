@@ -35,7 +35,7 @@ Invalid input. Enter a number from 1-3 (1/2/3).""")
         response = input("Head to checkout? (yes/no): ")
         if response.lower() == 'yes':
             Checkout = True
-        elif response.lower() != 'yes' or response.lower() != 'no':
+        elif response.lower() != 'yes' and response.lower() != 'no':
             print("""
 Invalid input. Enter yes/no.""")
         time.sleep(1.5)
