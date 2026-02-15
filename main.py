@@ -80,7 +80,6 @@ print(f"""
  _____________________________________________________""")
 time.sleep(2)
 calculateTotal()
-time.sleep(1.5)
 applyDiscount()
 time.sleep(1.5)
 print(f"""                   
