@@ -1,11 +1,18 @@
+#--------------------------------------------------------------- IMPORT MODULES ----------------------------------------------------------------
+
 import time
+import os
+
+#---------------------------------------------------------- SET VARIABLES + FUNCTIONS ----------------------------------------------------------
+
 total = 0
 finalTotal = 0
+foodChoices = []
 
-def calculateTotal():
+def calculateTotal(): # Function for main shopping loop where user can choose multiple items which are added together to produce the total cost
     global total
+    global foodChoices
     Checkout = False
-    foodChoices = []
 
     while Checkout == False:
         print("""
@@ -21,13 +28,16 @@ Select an item (1/2/3): """))
             print(f"""
 Yoghurt added to cart!""")
             total += 2
+            foodChoices.append('Yoghurt')
         elif choice == 2:
             print(f"""
 Meat Pie added to cart!""")
             total += 5
+            foodChoices.append('Meat Pie')
         elif choice == 3:
             print(f"""
 Burger added to cart!""")
+            foodChoices.append('Burger')
             total += 6
         else:
             print("""
@@ -39,27 +49,41 @@ Invalid input. Enter a number from 1-3 (1/2/3).""")
             print("""
 Invalid input. Enter yes/no.""")
         time.sleep(1.5)
-            
+        os.system('cls')
 
-
-def applyDiscount():
+def applyDiscount(): # Function for checking if total after checkout is applicable for discount and returning a rounded final total cost
     global finalTotal
     global total 
     if total > 10:
-        finalTotal = total * 0.9
+        finalTotal = round(total * 0.9, 2)
         print("""
 Discount for orders above $10 was applicable!""")
     else:
-        finalTotal = total
+        finalTotal = round(total, 2)
     print(f"""
 _______________________________________________________
    Your final total is ${finalTotal}. Printing receipt... 
 _______________________________________________________""")
 
-    
+def displayReceipt():     # Printing receipt with student's name, final cost and items selected
+    print(f"""                   
+ _____________________      
+| ----- RECEIPT ----- |
+|                     |
+| {studentName}       
+| ${finalTotal} 
+|                     |""")
+    for item in foodChoices:
+        print("| " + item)
+    print("""|                     |
+|                     |
+|                     |
+|                     |
+ _____________________""")
 
+#----------------------------------------------------------------- MAIN LOOP ------------------------------------------------------------------
 
-studentName = input("""Enter full student name: """)
+studentName = input("""Enter full student name: """) 
 time.sleep(2)
 print(f"""
  _____________________________________________________
@@ -68,15 +92,5 @@ print(f"""
 time.sleep(2)
 calculateTotal()
 applyDiscount()
-print(f"""
- _____________________      
-| ----- RECEIPT ----- |
-|                     |
-| {studentName}       
-| ${finalTotal}       
-|                     |
-|                     |
-|                     |
-|                     |
- _____________________""")
+displayReceipt()
 
