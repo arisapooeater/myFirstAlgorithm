@@ -7,7 +7,7 @@ import os
 
 total = 0
 finalTotal = 0
-foodChoices = []
+foodChoices = {}
 
 def calculateTotal(): # Function for main shopping loop where user can choose multiple items which are added together to produce the total cost
     global total
@@ -28,16 +28,16 @@ Select an item (1/2/3): """)
             print(f"""
 Yoghurt added to cart!""")
             total += 2
-            foodChoices.append('Yoghurt')
+            foodChoices.update({'Yoghurt' : 2})
         elif choice == '2':
             print(f"""
 Meat Pie added to cart!""")
             total += 5
-            foodChoices.append('Meat Pie')
+            foodChoices.update({'Meat Pie' : 5})
         elif choice == '3':
             print(f"""
 Burger added to cart!""")
-            foodChoices.append('Burger')
+            foodChoices.update({'Burger' : 6})
             total += 6
         else:
             print("""
@@ -67,21 +67,8 @@ _______________________________________________________
    Your final total is ${finalTotal}. Printing receipt... 
 _______________________________________________________""")
 
-def displayReceipt():     # Printing receipt with student's name, final cost and items selected
-    print(f"""                   
- _____________________      
-| ----- RECEIPT ----- |
-|                     |
-| {studentName}       
-| ${finalTotal} 
-|                     |""")
-    for item in foodChoices:
-        print("| " + item)
-    print("""|                     |
-|                     |
-|                     |
-|                     |
- _____________________""")
+
+
 
 #----------------------------------------------------------------- MAIN LOOP ------------------------------------------------------------------
 
@@ -96,5 +83,18 @@ calculateTotal()
 time.sleep(1.5)
 applyDiscount()
 time.sleep(1.5)
-displayReceipt()
+print(f"""                   
+ _____________________      
+| ----- RECEIPT ----- |
+|                     |
+| {studentName}       
+| ${finalTotal} 
+|                     |""")
+for key, value in foodChoices.items():
+    print(f"| {key}, ${value}")
+print("""|                     |
+|                     |
+|                     |
+|                     |
+ _____________________""")
 
