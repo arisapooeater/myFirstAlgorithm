@@ -22,19 +22,19 @@ def calculateTotal(): # Function for main shopping loop where user can choose mu
 | 2. Meat Pie $5  |
 | 3. Burger $6    |
  _________________""")
-        choice = int(input("""
-Select an item (1/2/3): """))
-        if choice == 1:
+        choice = input("""
+Select an item (1/2/3): """)
+        if choice == '1':
             print(f"""
 Yoghurt added to cart!""")
             total += 2
             foodChoices.append('Yoghurt')
-        elif choice == 2:
+        elif choice == '2':
             print(f"""
 Meat Pie added to cart!""")
             total += 5
             foodChoices.append('Meat Pie')
-        elif choice == 3:
+        elif choice == '3':
             print(f"""
 Burger added to cart!""")
             foodChoices.append('Burger')
@@ -42,6 +42,7 @@ Burger added to cart!""")
         else:
             print("""
 Invalid input. Enter a number from 1-3 (1/2/3).""")
+        time.sleep(1.5)
         response = input("Head to checkout? (yes/no): ")
         if response.lower() == 'yes':
             Checkout = True
@@ -60,6 +61,7 @@ def applyDiscount(): # Function for checking if total after checkout is applicab
 Discount for orders above $10 was applicable!""")
     else:
         finalTotal = round(total, 2)
+    time.sleep(1.5)
     print(f"""
 _______________________________________________________
    Your final total is ${finalTotal}. Printing receipt... 
@@ -91,6 +93,8 @@ print(f"""
  _____________________________________________________""")
 time.sleep(2)
 calculateTotal()
+time.sleep(1.5)
 applyDiscount()
+time.sleep(1.5)
 displayReceipt()
 
